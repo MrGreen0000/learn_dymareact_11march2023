@@ -5,17 +5,18 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-function cheer(score) {
-  if (score === 147) {
-    return "Maximum!";
-  }
-  if (score > 100) {
-    return "Century!";
-  }
-}
 
-root.render(
-  cheer(300)
+const element = (
+  <div>
+    <h1>Bonjour de Dyma</h1>
+    <h2>
+      Il est exactement {new Date().toLocaleTimeString()} lors de l'exécution.
+    </h2>
+  </div>
+);
+
+setInterval(() => root.render(element
+
 
 
 
@@ -23,7 +24,7 @@ root.render(
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
-);
+), 1000);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
