@@ -1,8 +1,8 @@
-export function Greating() {
-    return <h2>Greating !</h2>;
+export function Greating({ name, age }) {
+    return <h2>Greating {name} ! Vous aves {age}</h2>;
 }
 
-export default function Hello({ name, age, majeur }) {
-    console.log(name, age, majeur)
-    return <h1>Helllo {name} !</h1>;
+export default function Hello({ props }) {
+
+    return <Greating {...props} />; //{name={name} age={age}}
 }
