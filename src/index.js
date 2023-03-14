@@ -1,20 +1,15 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import Hello, { Greating } from './Hello'
-
-
-
+import Hello, { Greating } from "./Hello";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <>
-    <Hello />
+    <Hello name="Jean" age={12} majeur={false} />
     <Greating />
   </>
-
 );
-
 
 reportWebVitals();

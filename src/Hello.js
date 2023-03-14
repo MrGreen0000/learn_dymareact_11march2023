@@ -1,9 +1,8 @@
-export default function Hello() {
-    return <h1>Helllo Word</h1>
-}
-
 export function Greating() {
-    return <h2>Greating !</h2>
+    return <h2>Greating !</h2>;
 }
 
-
+export default function Hello({ name, age, majeur }) {
+    console.log(name, age, majeur)
+    return <h1>Helllo {name} !</h1>;
+}
