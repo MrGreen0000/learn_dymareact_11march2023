@@ -1,16 +1,18 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function App() {
-  const [value, setValue] = useState("");
-  let timeoutId = useRef(null);
+  const inputRef = useRef(null);
 
-  function handleChange(e) {
-    setValue(e.target.value);
-    clearTimeout(timeoutId.current);
-    timeoutId.current = setTimeout(() => {
-      console.log(value);
-    }, 3000);
+  function handleClick() {
+    inputRef.current.focus();
   }
 
-  return <input type="text" value={value} onChange={handleChange} />;
+  return (
+    <>
+      <input ref={inputRef} type="text" className="mr-15" />
+      <button onClick={handleClick} className="btn btn-primary">
+        focus input !
+      </button>
+    </>
+  );
 }
