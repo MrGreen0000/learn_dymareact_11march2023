@@ -1,12 +1,16 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function App() {
-  console.log("render");
-  const count = useRef(0);
+  const [value, setValue] = useState("");
+  let timeoutId = useRef(null);
 
-  function handleClick() {
-    count.current++;
-    console.log(count.current);
+  function handleChange(e) {
+    setValue(e.target.value);
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => {
+      console.log(value);
+    }, 3000);
   }
-  return <button onClick={handleClick}>clic</button>;
+
+  return <input type="text" value={value} onChange={handleChange} />;
 }
