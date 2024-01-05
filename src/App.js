@@ -1,9 +1,12 @@
-import Articles from "./components/Articles";
+import { useRef } from "react";
 
 export default function App() {
-  return (
-    <div className="d-flex flex-row justify-content-center align-items-center p-20">
-      <Articles />
-    </div>
-  );
+  console.log("render");
+  const count = useRef(0);
+
+  function handleClick() {
+    count.current++;
+    console.log(count.current);
+  }
+  return <button onClick={handleClick}>clic</button>;
 }
