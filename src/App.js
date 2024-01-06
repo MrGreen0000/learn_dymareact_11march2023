@@ -1,18 +1,21 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
+import Calendar from "./Calendar";
 
 function App() {
-  const [width, setWidth] = useState(0);
-  const buttonRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const infos = buttonRef.current.getBoundingClientRect();
-    setWidth(infos.width);
-  }, []);
+  console.log("render App");
+  const [value, setValue] = useState("");
+  const [count, setCount] = useState(0);
 
   return (
     <>
-      <button ref={buttonRef}>Je suis un bouton</button>
-      <p>{Math.floor(width)}</p>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <p>{value}</p>
+      <button onClick={(e) => setCount(count + 1)}>+1</button>
+      <Calendar count={count} />
     </>
   );
 }
