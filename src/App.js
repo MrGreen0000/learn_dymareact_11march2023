@@ -1,30 +1,30 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
-
-const MyInput = forwardRef((props, ref) => {
-  const realRef = useRef(null);
-
-  useImperativeHandle(ref, () => ({
-    focus() {
-      realRef.current.focus();
-    },
-  }));
-
-  return <input ref={realRef} type="text" className="mr-15" />;
-});
+import { useEffect, useState } from "react";
 
 function App() {
-  const inputRef = useRef(null);
+  const [count, setCount] = useState(0);
+  const [title, setTitle] = useState("Dyma");
+  console.log("render App");
 
-  function handleClick() {
-    inputRef.current.focus();
-    inputRef.current.style.borderColor = "red";
+  useEffect(() => {
+    console.log("effectApp");
+    document.title = title;
+  }, [title]);
+
+  function handleChange(e) {
+    setTitle(e.target.value);
   }
 
   return (
     <>
-      <MyInput ref={inputRef} />
-      <button onClick={handleClick} className="btn btn-primary">
-        focus me !
+      <h1>Hello world !</h1>
+      <input
+        type="text"
+        onChange={handleChange}
+        value={title}
+        className="mr-15"
+      />
+      <button className="btn btn-primary" onClick={() => setCount(count + 1)}>
+        {count}
       </button>
     </>
   );
