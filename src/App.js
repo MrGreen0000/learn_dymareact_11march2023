@@ -1,180 +1,33 @@
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
-export default function App() {
-  const paragraphes = [
-    `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui.`,
-    `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui.`,
-    `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui. Lorem ipsum dolor sit
-  amet consectetur, adipisicing elit. Excepturi quo laboriosam expedita a
-  at mollitia rerum distinctio, modi nostrum dignissimos. Doloremque
-  repellat placeat soluta maxime omnis, architecto consequatur dolor qui.
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi quo
-  laboriosam expedita a at mollitia rerum distinctio, modi nostrum
-  dignissimos. Doloremque repellat placeat soluta maxime omnis, architecto
-  consequatur dolor qui. Lorem ipsum dolor sit amet consectetur,
-  adipisicing elit. Excepturi quo laboriosam expedita a at mollitia rerum
-  distinctio, modi nostrum dignissimos. Doloremque repellat placeat soluta
-  maxime omnis, architecto consequatur dolor qui.`,
-  ];
+const MyInput = forwardRef((props, ref) => {
+  const realRef = useRef(null);
 
-  const paragraphesRef = useRef([]);
+  useImperativeHandle(ref, () => ({
+    focus() {
+      realRef.current.focus();
+    },
+  }));
 
-  function handleClick(index) {
-    paragraphesRef.current[index].scrollIntoView({ behavior: "smooth" });
+  return <input ref={realRef} type="text" className="mr-15" />;
+});
+
+function App() {
+  const inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+    inputRef.current.style.borderColor = "red";
   }
 
   return (
     <>
-      {paragraphes.map((p, index) => (
-        <button
-          className="btn btn-primary mr-15"
-          onClick={() => handleClick(index)}
-        >
-          {index}
-        </button>
-      ))}
-      <ul>
-        {paragraphes.map((p) => (
-          <>
-            <li
-              ref={(node) => {
-                paragraphesRef.current.push(node);
-              }}
-            >
-              {p}
-            </li>
-            <br />
-          </>
-        ))}
-      </ul>
+      <MyInput ref={inputRef} />
+      <button onClick={handleClick} className="btn btn-primary">
+        focus me !
+      </button>
     </>
   );
 }
+
+export default App;
