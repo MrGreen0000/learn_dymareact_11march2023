@@ -1,46 +1,45 @@
-import { useMemo, useState } from "react";
+import { useState, memo, useCallback } from "react";
+import PropTypes from "prop-types";
 
-function App() {
-  console.log("render App");
-  const [value, setValue] = useState(0);
-  const [list, setList] = useState([]);
+const AddTodo = memo(({ addTodo }) => {
+  console.log("render addTodo");
+  const [value, setValue] = useState("");
 
-  function complexeCalculayion(list) {
-    console.log("complexe function invocation");
-    return list.map((l) => {
-      for (let i = 0; i < 100000; i++) {
-        l = i;
-      }
-      return l;
-    });
-  }
-
-  const complexeList = useMemo(() => {
-    console.time("computation");
-    const res = complexeCalculayion(list);
-    console.timeEnd("computation");
-    return res;
-  }, [list]);
+  AddTodo.propTypes = {
+    addTodo: PropTypes.func.isRequired,
+  };
 
   return (
     <>
       <input
-        type="number"
+        type="text"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
+      <button onClick={() => addTodo(value)}>add</button>
+    </>
+  );
+});
 
-      <button
-        onClick={() => {
-          setList([...list, value]);
-          setValue(0);
-        }}
-      >
-        Add to list
-      </button>
+function App() {
+  console.log("render App");
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = useCallback(
+    (value) => {
+      setTodos([...todos, value]);
+    },
+    [todos]
+  );
+
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>{count}</button>
+      <AddTodo addTodo={addTodo} />
       <ul>
-        {complexeList.map((cl, i) => (
-          <li key={i}>{cl}</li>
+        {todos.map((t, i) => (
+          <li key={i}>{t}</li>
         ))}
       </ul>
     </>
